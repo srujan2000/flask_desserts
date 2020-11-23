@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+    <link rel="shorctcut icon" type="image/png"  href="{{url_for('static',filename='images/favicon.png')}}">
+    <title>Royals Raj</title>
+</head>
+<body>
+    <section id="navbar">
+        <div class="navbar-brand">
+           <img src="{{url_for('static',filename='images/instagram_profile_image-removebg-preview.png')}}" height="130" width="130" >
+           <h1><a href="#">Raj Desserts</a></h1>
+        <ul class="items">
+            <li><a href="#"> Products </a></li>
+            <li><a href="#"> Contact</a></li>
+            {% if length > 0 %}
+            <li><a href="{{url_for('cart')}}"> Cart <i class="fa fa-shopping-cart" id="cartNum" aria-hidden="true"> {{length}}</i></a></li>
+            {% else %}
+            <li><a href="{{url_for('cart')}}"> Cart <i class="fa fa-shopping-cart" id="cartNum" aria-hidden="true"></i></a></li>
+            {% endif %}
+        </ul>
+    </div>
+    </section> 
+
+    <section id="about">
+        <div class="overlay">
+            <div class="details">
+                <h1>Raj Desserts</h1>
+                <p>Since 1995</p>
+                <button><a href="#">More</a></button>
+            </div>
+        </div>
+    </section>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <h1 style="margin-left: 580px;color: #EF629F;">
+          {{message}}
+      </h1>
+      {% endfor %}
+     {% endif %}
+    {% endwith %}  
+
+  <section id="products">
+        <h1>Products</h1>
+        <div class="container">
+            <div class="item1">
+                <h2>Red Velvet Cake</h2>
+                <img src="{{url_for('static',filename='images/Red Velvet Cake.png')}}" height="150px" width="55%">
+                <h3>Price: ₹1200/kg</h3>
+                <button>
+                  
+                    <a href="{{url_for('addtocart',item_name='Red Velvet Cake',item_price=1200,price_cart=1200)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item2">
+                <h2>Vanilla Cupcake</h2>
+                <img src="{{url_for('static',filename='images/Vanilla Cupcake.png')}}" height="150px" width="55%">
+                <h3>Price: ₹70/Each</h3>
+                <button>
+                   
+                    <a href="{{url_for('addtocart',item_name='Vanilla Cupcake',item_price=70,price_cart=70)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item3">
+                <h2>Very Berry Strawberry</h2>
+                <img src="{{url_for('static',filename='images/Very Berry Strawberry.png')}}" height="150px" width="55%">
+                <h3>Price: ₹130</h3>
+                <button>
+                    
+                    <a href="{{url_for('addtocart',item_name='Very Berry Strawberry',item_price=130,price_cart=130)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item4">
+                <h2>Chocolate Cheer Brownie</h2>
+                <img src="{{url_for('static',filename='images/Chocolate Cheer Brownie.png')}}" height="150px" width="60%">
+                <h3>Price: ₹150</h3>
+                <button>
+                  
+                    <a href="{{url_for('addtocart',item_name='Chocolate Cheer Brownie',item_price=150,price_cart=150)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item5">
+                <h2>Chocolate Cake</h2>
+                <img src="{{url_for('static',filename='images/Chocolate Cake.png')}}" height="150px" width="60%">
+                <h3>Price: ₹650/kg</h3>
+                <button>
+                  
+                    <a href="{{url_for('addtocart',item_name='Chocolate Cake',item_price=650,price_cart=650)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item6">
+                <h2>Pinky Stick</h2>
+                <img src="{{url_for('static',filename='images/Pinky Stick.png')}}" height="150px" width="60%">
+                <h3>Price: ₹70</h3>
+                <button>
+                  
+                    <a href="{{url_for('addtocart',item_name='Pinky Stick',item_price=70,price_cart=70)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item7">
+                <h2>Oreo Cookie Sundae </h2>
+                <img src="{{url_for('static',filename='images/Oreo Cookie Sundae.png')}}" height="150px" width="60%">
+                <h3>Price: ₹135</h3>
+                <button>
+                    
+                    <a href="{{url_for('addtocart',item_name='Oreo Cookie Sundae',item_price=135,price_cart=135)}}">Add To Cart</a>
+                </button>
+            </div>
+            <div class="item8">
+                <h2>Super Strawberry Waffle </h2>
+                <img src="{{url_for('static',filename='images/Super Strawberry Waffle.png')}}" height="150px" width="60%">
+                <h3>Price: ₹135</h3>
+                <button>
+              
+                    <a href="{{url_for('addtocart',item_name='Super Strawberry Waffle',item_price=135,price_cart=135)}}">Add To Cart</a>
+                </button>
+            </div>
+        </div>
+  </section>
+
+  <section id="branches">
+      <h1>Branches</h1>
+      <div class="container">
+         <div class="branch1">
+             <h1>Hyderabad</h1>
+             <Address>Address: Road no.10, Oppostite to TTD, Himayatnagar. Pin No: 500023</Address>
+             <h2>Phone No: 23329999</h2>
+         </div>
+         <div class="branch2">
+            <h1>Hyderabad</h1>
+            <Address>Address: Road no.12, Main Road, Banjara Hills. Pin No: 500523</Address>
+            <h2>Phone No: 23329899</h2>
+        </div>
+        <div class="branch3">
+            <h1>Bengaluru</h1>
+            <Address>Address: Road no.2, Main Road, Silk Board. Pin No: 522523</Address>
+            <h2>Phone No: 23329899</h2>
+        </div>
+      </div>
+</section>
+
+<section id="main-footer">
+    <h1>Raj Desserts &copy; 2020</h1>
+    <h3>Help | Contact | Mail</h3>
+</section>
+
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/cart.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+    <link rel="shorctcut icon" type="image/png"  href="{{url_for('static',filename='images/favicon.png')}}">
+    <title>Royals Raj</title>
+</head>
+<body>
+    <section id="navbar">
+        <div class="navbar-brand">
+            <img src="{{url_for('static',filename='images/instagram_profile_image-removebg-preview.png')}}" height="130" width="130" >
+           <h1><a href="{{url_for('home')}}">Raj Desserts</a></h1>
+        <ul class="items">
+            <li><a href="#"> Contact</a></li>
+            {% if length > 0 %}
+            <li><a href="{{url_for('cart')}}"> Cart <i class="fa fa-shopping-cart" id="cartNum" aria-hidden="true"> {{length}}</i></a></li>
+            {% else %}
+            <li><a href="{{url_for('cart')}}"> Cart <i class="fa fa-shopping-cart" id="cartNum" aria-hidden="true"></i></a></li>
+            {% endif %}
+        </ul>
+    </div>
+    </section> 
+
+    {% if 1 > length %}
+        <h1 id="nocart" style="margin-left:570px; color:#EF629F">No Items in the Cart</h1>
+        <button id="backhome" ><a href="{{url_for('home')}}" style="color: #bb105a;" class="backtohome">Back to Home</a></button>
+    {% else %}
+    <section id="cart" style="margin-bottom: 30px;">
+        <h1>Cart</h1>
+          <div class="conhead">
+            <h1 id="headone">Item</h1>
+            <h1 id="headtwo">Quantity</h1>
+            <h1 id="headthree">Price</h1>
+          </div> 
+            <div class="container cartContent">
+                {% for item in items %}
+                <div class="images">
+                    <div class="items">
+                      <img src="{{item.images}}" height='150px' width='150px' style ="margin-right: 70px; margin-bottom: 0px;">
+                    </div>
+                    <div >
+                        <h2 id="itemName" style="margin-left: 50px;">{{item.name}}</h2>
+                    </div>
+                 </div>
+                 <div class="quantity">
+                    <div class="quantities">
+                       <div class="incdec"><a href="{{url_for('sayMinus',item_name=item.name)}}"><button class="incdec" id="minus" >&#8722;</button></a></div>
+                        <div><input id="num"  value="{{item.cart}}" disabled style="font-size: 16px;"></div>
+                        <div class="incdec"><a href="{{url_for('sayPlus',item_name=item.name)}}"><button class="incdec" id="plus">&#43;</button></a></div>
+                    </div>
+                 </div>
+                 <div class="price">
+                    <div class="prices">
+                        <h2>₹{{item.cart_price}}</h2>
+                    </div>
+                 </div> 
+                 {% endfor %}
+
+        </div>
+    </section>
+
+    <div class="totalPrice">
+        <h1 id="disPrice" style="display: ;color: ;">Total Amount : ₹{{total_price}}</h1>
+        <button><a href="#"> Proceed</a></button>
+    </div>
+    {% endif %}
+<section id="main-footer">
+    <h1>Raj Desserts &copy; 2020</h1>
+    <h3>Help | Contact | Mail</h3>
+</section>
+  
+  </body>
+</html>
